@@ -71,33 +71,29 @@ def primes2(n_max):
         num += 1
 
 def primes3(n_max):
-
-    p, num, cnt = list(), 2, 0
+    p, num, cnt = [2], 2, 1
     next_square, sqrt_num = 4, 1
 
-    while cnt < n_max:
+    yield num
 
-        should_add = True
+    while cnt < n_max:
+        num += 1
 
         for prime in p:
-
             if num % prime == 0:
-                should_add = False
                 break
 
             if prime > sqrt_num:
+                p.append(num)
+                cnt += 1
+                yield num
                 break
-
-        if should_add:
-            p.append(num)
-            cnt += 1
-            yield num
 
         if num == next_square:
             next_square += 2 * sqrt_num + 1
             sqrt_num += 1
 
-        num += 1
+
 
 def primes22(n_max):
     p, num, cnt = list(), 2, 0
